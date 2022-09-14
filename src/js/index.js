@@ -24,12 +24,12 @@ function onCountryInput(event) {
     }
 
     fetchCounries(countryName).then(response => {
-        if (response.length > 10) {
-            Notiflix.Notify.info('Too many matches found. Please enter a more specific name.')
-        } else if (response.length === 1) {
+      if (response.length > 10) {
+        Notiflix.Notify.info('Too many matches found. Please enter a more specific name.')
+       } else if (response.length === 1) {
             renderCountry(response[0]);
         } else if (response.length > 1 && response.length <= 10) {
-        renderCountriesList(response);
+        countryListEl.innerHTML = counrtyCardTempList(response);
       }
     })
     .catch(() => {
@@ -55,21 +55,7 @@ function renderCountry({
   });
 
   countryInfoEl.innerHTML = markup;
-}
-
-function renderCountriesList(array) {
-    const markup = array.reduce((acc, { name, flags }) => {
-        return (
-            acc +
-            `<li class="country-list__item">
-    <img class="country-list__flag" src="${flags.svg}" alt="${name.official}" width="70">
-    <p class="country-list__name">${name.official}</p>
-</li>`
-        );
-    }, '');
-
-    countryListEl.innerHTML = markup;
-}
+};
 
 
 
