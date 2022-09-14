@@ -16,10 +16,10 @@ counryInputEl.addEventListener('input', debounce(onCountryInput, DEBOUNCE_DELAY)
 
 function onCountryInput(event) {
     const countryName = event.target.value.trim();
-    countryListEl.innerHTML = '';
-    countryInfoEl.innerHTML = '';
 
-    if (!countryInfoEl) {
+  if (countryName === '') {
+    countryListEl.innerHTML = '';
+    countryInfoEl.innerHTML = ''; 
         return;
     }
 
