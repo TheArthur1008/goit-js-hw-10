@@ -15,12 +15,12 @@ const countryInfoEl = document.querySelector(".country-info");
 counryInputEl.addEventListener('input', debounce(onCountryInput, DEBOUNCE_DELAY));
 
 function onCountryInput(event) {
-    const countryName = event.target.value.trim();
+  const countryName = event.target.value.trim();
+  countryListEl.innerHTML = '';
+  countryInfoEl.innerHTML = ''; 
 
   if (countryName === '') {
-    countryListEl.innerHTML = '';
-    countryInfoEl.innerHTML = ''; 
-        return;
+     return;
     }
 
     fetchCounries(countryName).then(response => {
